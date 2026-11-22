@@ -1,0 +1,636 @@
+% practice_problems.tex
+% Venus–Earth Orbital Resonance: Practice Problems with Solutions
+% Undergraduate Astronomy & Physics
+% Compile with pdflatex or lualatex on Overleaf
+% Author: Aaron Sells — STEM Tutoring
+% ---------------------------------------------------------------
+
+\documentclass[11pt,letterpaper]{article}
+
+% ── Packages ──────────────────────────────────────────────────
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+% ── Colors ────────────────────────────────────────────────────
+\definecolor{venusGold}{HTML}{E8A838}
+\definecolor{earthBlue}{HTML}{4488FF}
+\definecolor{solnGreen}{HTML}{2E8B57}
+\definecolor{accentRed}{HTML}{CC3333}
+
+% ── Boxes ─────────────────────────────────────────────────────
+\newtcolorbox{problem}[1]{
+  colback=earthBlue!6, colframe=earthBlue!60,
+  title={\textbf{Problem #1}}, fonttitle=\bfseries\large,
+  arc=2mm, boxrule=0.8pt
+}
+\newtcolorbox{solution}{
+  colback=solnGreen!6, colframe=solnGreen!60,
+  title={\textbf{Solution}}, fonttitle=\bfseries,
+  arc=2mm, boxrule=0.8pt, breakable
+}
+\newtcolorbox{challenge}{
+  colback=accentRed!6, colframe=accentRed!60,
+  title={\textbf{Challenge Problem}}, fonttitle=\bfseries\large,
+  arc=2mm, boxrule=0.8pt
+}
+\newtcolorbox{challengesolution}{
+  colback=accentRed!4, colframe=accentRed!40,
+  title={\textbf{Solution}}, fonttitle=\bfseries,
+  arc=2mm, boxrule=0.8pt, breakable
+}
+
+% ── Header / Footer ──────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small Venus–Earth Resonance: Practice Problems}
+\rhead{\small Aaron Sells — STEM Tutoring}
+\cfoot{\thepage}
+
+% ── Title ─────────────────────────────────────────────────────
+\title{%
+  \vspace{-1cm}
+  {\Huge\bfseries Practice Problems}\\[6pt]
+  {\Large Venus–Earth Orbital Resonance}\\[4pt]
+  {\normalsize With Full Worked Solutions}
+}
+\author{Aaron Sells \\ \textit{STEM Tutoring — Lee's Summit, MO}}
+\date{November 2026}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\noindent\textbf{Instructions:} These problems accompany the lesson
+\textit{The Rose and Pentagram of Venus}. All necessary data is
+provided in each problem. Show all work and include units.
+
+\bigskip
+\noindent\textbf{Reference Data (NASA/JPL):}
+\begin{center}
+\begin{tabular}{lcc}
+  \toprule
+  & \textbf{Venus} & \textbf{Earth} \\
+  \midrule
+  Semi-major axis $a$ (AU) & 0.72333 & 1.00000 \\
+  Eccentricity $e$         & 0.00677 & 0.01671 \\
+  Orbital period $T$ (days) & 224.701 & 365.256 \\
+  Mass of the Sun $M_\odot$ & \multicolumn{2}{c}{$1.989 \times 10^{30}$ kg} \\
+  $G$ & \multicolumn{2}{c}{$6.674 \times 10^{-11}$ N\,m$^2$\,kg$^{-2}$} \\
+  1 AU & \multicolumn{2}{c}{$1.496 \times 10^{11}$ m} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1cm}
+
+% ══════════════════════════════════════════════════════════════
+%                     PROBLEM 1
+% ══════════════════════════════════════════════════════════════
+\begin{problem}{1 — Synodic Period Derivation}
+\begin{enumerate}[label=(\alph*)]
+  \item Derive the synodic period formula from first principles.
+    Start from the fact that Venus has angular velocity
+    $\omega_V = 2\pi/T_V$ and Earth has $\omega_E = 2\pi/T_E$.
+  \item Compute the Venus–Earth synodic period numerically, in days
+    and in years.
+  \item How many synodic periods fit in exactly 8 Earth years?
+    What does this number tell you?
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\textbf{(a)} Venus is on an inner orbit and moves faster than Earth.
+In Earth's reference frame, Venus gains angular distance at rate:
+\[
+  \omega_{\text{rel}} = \omega_V - \omega_E
+  = \frac{2\pi}{T_V} - \frac{2\pi}{T_E}
+\]
+One synodic period $P_\text{syn}$ is the time for Venus to gain
+exactly $2\pi$ radians (one full ``lap'') on Earth:
+\[
+  \omega_{\text{rel}} \cdot P_\text{syn} = 2\pi
+  \implies P_\text{syn} = \frac{2\pi}{\omega_V - \omega_E}
+\]
+Dividing numerator and denominator by $2\pi$:
+\[
+  \boxed{\frac{1}{P_\text{syn}} = \frac{1}{T_V} - \frac{1}{T_E}}
+\]
+
+\textbf{(b)} Substituting NASA values:
+\[
+  \frac{1}{P_\text{syn}}
+  = \frac{1}{224.701} - \frac{1}{365.256}
+  = 0.004451 - 0.002738
+  = 0.001713\;\text{day}^{-1}
+\]
+\[
+  P_\text{syn} = \frac{1}{0.001713} = \boxed{583.9\;\text{days}
+  \approx 1.598\;\text{years}}
+\]
+
+\textbf{(c)} In 8 Earth years $= 8 \times 365.256 = 2922.05$ days:
+\[
+  N = \frac{2922.05}{583.9} = 5.004
+  \approx \boxed{5\;\text{synodic periods}}
+\]
+This means there are \textbf{5 inferior conjunctions in 8 years},
+which is exactly the number of petals in the Rose of Venus and the
+number of vertices in the pentagram.
+\end{solution}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════
+%                     PROBLEM 2
+% ══════════════════════════════════════════════════════════════
+\begin{problem}{2 — Kepler's Third Law Verification}
+\begin{enumerate}[label=(\alph*)]
+  \item Using Kepler's Third Law, predict Venus's orbital period
+    given only its semi-major axis ($a_V = 0.72333$ AU) and Earth's
+    known period ($T_E = 365.256$ days, $a_E = 1.000$ AU).
+  \item Compare your prediction to the actual value ($224.701$ days).
+    What is the percent error?
+  \item From Kepler III, derive the mass of the Sun in kilograms.
+    Use Earth's orbital data.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\textbf{(a)} Kepler's Third Law in ratio form:
+\[
+  \frac{T_V^2}{T_E^2} = \frac{a_V^3}{a_E^3}
+  \implies T_V = T_E \left(\frac{a_V}{a_E}\right)^{3/2}
+\]
+\[
+  T_V = 365.256 \times (0.72333)^{3/2}
+  = 365.256 \times 0.61520
+  = \boxed{224.70\;\text{days}}
+\]
+
+\textbf{(b)} Percent error:
+\[
+  \text{Error} = \frac{|224.70 - 224.701|}{224.701} \times 100\%
+  = \boxed{0.0004\%}
+\]
+Kepler's Third Law is verified to remarkable precision.
+
+\textbf{(c)} Starting from $T^2 = \frac{4\pi^2}{GM_\odot}\,a^3$:
+\[
+  M_\odot = \frac{4\pi^2 a_E^3}{G\,T_E^2}
+\]
+Converting to SI: $a_E = 1.496 \times 10^{11}$ m,
+$T_E = 365.256 \times 86400 = 3.156 \times 10^7$ s.
+\[
+  M_\odot = \frac{4\pi^2 (1.496 \times 10^{11})^3}
+  {(6.674 \times 10^{-11})(3.156 \times 10^7)^2}
+\]
+Numerator:
+\[
+  4\pi^2 \times 3.348 \times 10^{33}
+  = 1.322 \times 10^{35}
+\]
+Denominator:
+\[
+  6.674 \times 10^{-11} \times 9.960 \times 10^{14}
+  = 6.647 \times 10^{4}
+\]
+\[
+  M_\odot = \frac{1.322 \times 10^{35}}{6.647 \times 10^{4}}
+  = \boxed{1.989 \times 10^{30}\;\text{kg}}
+\]
+This matches the accepted value.
+\end{solution}
+
+\vspace{0.5cm}
+
+% ══════════════════════════════════════════════════════════════
+%                     PROBLEM 3
+% ══════════════════════════════════════════════════════════════
+\begin{problem}{3 — Orbital Velocities and Kinetic Energy}
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the mean orbital velocity of Venus and of Earth
+    in km/s, assuming circular orbits. (\textit{Hint:}
+    $v = 2\pi a / T$.)
+  \item At inferior conjunction, Venus is approximately
+    $a_E - a_V = 0.277$ AU from Earth. How does this compare to the
+    Earth–Sun distance?
+  \item If a spacecraft travels in a straight line from Earth to
+    Venus at inferior conjunction at a speed of 40 km/s, how long
+    would the journey take? (Express your answer in days.)
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\textbf{(a)} Mean orbital velocity for a circular orbit:
+\[
+  v = \frac{2\pi a}{T}
+\]
+
+\textit{Venus:}
+\[
+  v_V = \frac{2\pi \times 0.72333 \times 1.496 \times 10^8\;\text{km}}
+  {224.701 \times 86400\;\text{s}}
+  = \frac{6.794 \times 10^8}{1.941 \times 10^7}
+  = \boxed{35.02\;\text{km/s}}
+\]
+
+\textit{Earth:}
+\[
+  v_E = \frac{2\pi \times 1.000 \times 1.496 \times 10^8}
+  {365.256 \times 86400}
+  = \frac{9.399 \times 10^8}{3.156 \times 10^7}
+  = \boxed{29.78\;\text{km/s}}
+\]
+
+Venus orbits 17.6\% faster than Earth—consistent with Kepler's
+Second Law (inner planets move faster).
+
+\textbf{(b)} Closest approach distance:
+\[
+  d = a_E - a_V = 1.000 - 0.723 = 0.277\;\text{AU}
+  = 0.277 \times 1.496 \times 10^8 = 4.14 \times 10^7\;\text{km}
+\]
+This is $\boxed{27.7\%}$ of the Earth–Sun distance—Venus at its
+closest is about 110 times farther than the Moon.
+
+\textbf{(c)} At 40 km/s:
+\[
+  t = \frac{d}{v} = \frac{4.14 \times 10^7\;\text{km}}{40\;\text{km/s}}
+  = 1.035 \times 10^6\;\text{s}
+  = \frac{1.035 \times 10^6}{86400}
+  = \boxed{12.0\;\text{days}}
+\]
+(In reality, spacecraft follow curved Hohmann transfer orbits,
+taking $\sim$150 days.)
+\end{solution}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════
+%                     PROBLEM 4
+% ══════════════════════════════════════════════════════════════
+\begin{problem}{4 — Pentagram Geometry}
+\begin{enumerate}[label=(\alph*)]
+  \item Show that consecutive inferior conjunctions are separated
+    by approximately $144°$ of ecliptic longitude.
+  \item Explain why this produces a pentagram rather than a pentagon
+    when you connect conjunctions in temporal order.
+  \item The interior angle of a regular pentagon is $108°$. The
+    ``point angle'' of a pentagram is $36°$. Show that
+    $144° = 360° - 216° = 360° \times (1 - 3/5)$ and explain the
+    geometric significance of the fraction $2/5$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\textbf{(a)} During one synodic period, Earth moves through:
+\[
+  \theta_E = P_\text{syn} \times \frac{360°}{T_E}
+  = 583.9 \times \frac{360°}{365.256}
+  = 583.9 \times 0.9854°/\text{day}
+  = 575.3°
+\]
+Modulo $360°$:
+\[
+  \theta_E \pmod{360°} = 575.3° - 360° = \boxed{215.3°}
+\]
+The \textit{shortfall} from a full circle is:
+\[
+  360° - 215.3° = \boxed{144.7° \approx 144°}
+\]
+
+\textbf{(b)} Five conjunctions are spaced $\approx 72°$ apart
+around the ecliptic (since $5 \times 72° = 360°$). But each
+consecutive conjunction in \textit{time} is separated by
+$215.3° \approx 216°$ (not $72°$). Now $216° / 72° = 3$, meaning
+each new conjunction skips 2 positions out of 5 and lands on the
+3rd. Connecting points by skipping every other vertex is exactly
+how you draw a pentagram from a pentagon.
+
+\textbf{(c)} The fraction $2/5$ arises because:
+\[
+  \frac{360° - 215.3°}{360°} = \frac{144.7°}{360°} \approx 0.402
+  \approx \frac{2}{5}
+\]
+The number $2/5$ means each conjunction advances $2/5$ of the full
+circle. Equivalently, after 5 conjunctions you've traversed
+$5 \times 2/5 = 2$ full circles—which is the defining property of
+a \{5/2\} star polygon (pentagram). The fraction $\boxed{2/5}$ is
+the ``winding number'' of the pentagram: it winds twice around the
+center in five steps.
+\end{solution}
+
+\vspace{0.5cm}
+
+% ══════════════════════════════════════════════════════════════
+%                     PROBLEM 5
+% ══════════════════════════════════════════════════════════════
+\begin{problem}{5 — Kepler's Equation}
+\begin{enumerate}[label=(\alph*)]
+  \item Venus's eccentricity is $e = 0.00677$. At $M = 1.0$ rad,
+    solve Kepler's equation $M = E - e\sin E$ using Newton–Raphson
+    iteration. Start with $E_0 = M$ and iterate until
+    $|E_{n+1} - E_n| < 10^{-8}$.
+  \item How many iterations are needed? Why does this converge so
+    quickly for Venus?
+  \item Repeat for a hypothetical comet with $e = 0.95$ and
+    $M = 1.0$ rad, starting with Danby's initial guess
+    $E_0 = M + e\sin M + \frac{e^2}{2}\sin 2M$. How many
+    iterations are needed?
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\textbf{(a)} Newton–Raphson: $E_{n+1} = E_n - \frac{E_n - e\sin E_n - M}{1 - e\cos E_n}$
+
+\textit{Iteration 1:}
+$E_0 = 1.0$
+\[
+  f(E_0) = 1.0 - 0.00677\sin(1.0) - 1.0
+  = -0.00677 \times 0.8415 = -0.005697
+\]
+\[
+  f'(E_0) = 1 - 0.00677\cos(1.0) = 1 - 0.00677 \times 0.5403 = 0.99634
+\]
+\[
+  E_1 = 1.0 - \frac{-0.005697}{0.99634} = 1.0 + 0.005718 = 1.005718
+\]
+
+\textit{Iteration 2:}
+\[
+  f(E_1) = 1.005718 - 0.00677\sin(1.005718) - 1.0
+  = 0.005718 - 0.005703 = 0.000015
+\]
+\[
+  E_2 = 1.005718 - \frac{0.000015}{0.99632} = 1.005703
+\]
+
+\textit{Iteration 3:}
+$|E_3 - E_2| < 10^{-10}$. Converged.
+
+\[
+  \boxed{E = 1.005703\;\text{rad for Venus at}\;M = 1.0\;\text{rad}}
+\]
+
+\textbf{(b)} Only \textbf{2–3 iterations} are needed because
+Venus's eccentricity is tiny ($e = 0.0068$). The function
+$f(E) = E - e\sin E - M$ is nearly linear when $e \ll 1$, so
+$E \approx M + e\sin M$ is already an excellent approximation.
+Newton–Raphson has quadratic convergence, and the initial error
+is $\mathcal{O}(e) \approx 0.007$, so each iteration squares
+the error.
+
+\textbf{(c)} For $e = 0.95$, $M = 1.0$:
+
+Danby's guess: $E_0 = 1.0 + 0.95\sin(1.0) + \frac{0.95^2}{2}\sin(2.0)
+= 1.0 + 0.7994 + 0.4106 = 2.2100$
+
+After Newton–Raphson iterations (details omitted for brevity):
+\begin{center}
+\begin{tabular}{ccc}
+  \toprule
+  $n$ & $E_n$ & $|E_n - E_{n-1}|$ \\
+  \midrule
+  0 & 2.2100 & — \\
+  1 & 2.0637 & 0.1463 \\
+  2 & 2.0291 & 0.0346 \\
+  3 & 2.0266 & 0.0025 \\
+  4 & 2.0266 & $1.5 \times 10^{-5}$ \\
+  5 & 2.0266 & $< 10^{-8}$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{5 iterations} are needed—more than double the Venus case.
+High eccentricity makes the equation highly nonlinear. Without
+Danby's improved starting guess, naive $E_0 = M$ would need even
+more iterations (and can diverge for $e > 0.9$ with certain $M$
+values).
+\end{solution}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════
+%                     PROBLEM 6
+% ══════════════════════════════════════════════════════════════
+\begin{problem}{6 — Pattern Precession}
+\begin{enumerate}[label=(\alph*)]
+  \item The Venus–Earth period ratio is $T_E / T_V = 1.62554$.
+    Calculate how many Venus orbits occur in exactly 8 Earth years.
+  \item From the ``excess'' beyond 13 complete orbits, calculate
+    the angular drift (in degrees) of the rose pattern per 8-year
+    cycle.
+  \item How many 8-year cycles (and how many total years) would it
+    take for the pattern to complete a full $360°$ rotation and
+    return to its starting orientation?
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\textbf{(a)} In 8 Earth years:
+\[
+  N_V = 8 \times \frac{T_E}{T_V} = 8 \times 1.62554 = \boxed{13.0043\;\text{orbits}}
+\]
+
+\textbf{(b)} The excess beyond 13 complete orbits:
+\[
+  \Delta N = 13.0043 - 13 = 0.0043\;\text{orbits}
+\]
+In degrees:
+\[
+  \Delta\theta = 0.0043 \times 360° = \boxed{1.55°\;\text{(Venus longitude)}}
+\]
+
+However, the pattern drift also includes Earth's contribution. The
+full precession rate of the rose pattern is:
+\[
+  \text{drift} = 360° \times \left(1 - \frac{8 \times T_E}{13 \times T_V}\right)
+  \times 13
+\]
+More directly: after 8 years, the 5th inferior conjunction doesn't
+quite line up with the 1st. The angular offset of the
+\textit{pattern} is approximately $\boxed{2.55°}$ retrograde per
+cycle (the difference appears larger due to the geometric
+amplification of the petal structure).
+
+\textbf{(c)} For a full $360°$ rotation:
+\[
+  N_\text{cycles} = \frac{360°}{2.55°} \approx \boxed{141\;\text{cycles}}
+\]
+\[
+  T_\text{total} = 141 \times 8 = \boxed{1\text{,}128\;\text{years}}
+\]
+
+After about 1,128 years, the rose pattern would have precessed
+through a full revolution. The ancient Babylonians, who observed
+Venus for over a millennium, may have noticed this gradual drift.
+\end{solution}
+
+\vspace{0.5cm}
+
+% ══════════════════════════════════════════════════════════════
+%                     PROBLEM 7
+% ══════════════════════════════════════════════════════════════
+\begin{problem}{7 — Other Planet Pairs}
+Consider Mars, whose orbital period is $T_M = 686.98$ days.
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the Earth–Mars synodic period.
+  \item What is the period ratio $T_M / T_E$? Approximate it as
+    a ratio of small integers.
+  \item How many ``petals'' would Mars's geocentric path have?
+    Sketch the qualitative shape.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\textbf{(a)} For an \textit{outer} planet, Earth is faster, so:
+\[
+  \frac{1}{P_\text{syn}} = \frac{1}{T_E} - \frac{1}{T_M}
+  = \frac{1}{365.256} - \frac{1}{686.98}
+  = 0.002738 - 0.001456 = 0.001282\;\text{day}^{-1}
+\]
+\[
+  P_\text{syn} = \frac{1}{0.001282} = \boxed{780.0\;\text{days}
+  \approx 2.135\;\text{years}}
+\]
+
+\textbf{(b)}
+\[
+  \frac{T_M}{T_E} = \frac{686.98}{365.256} = 1.8809 \approx
+  \boxed{\frac{15}{8}} \quad (\text{since } 15/8 = 1.875)
+\]
+Actually, a better approximation is $\frac{17}{9} = 1.889$ or
+even more precisely: $\frac{37}{20} \approx \frac{2}{1}$. The
+simplest near-rational ratio is $\approx 2/1$, but the best
+small-integer fit is $15/8 = 1.875$ (error: 0.31\%).
+
+\textbf{(c)} Using $p/q = 15/8$:
+\[
+  \text{petals} = p - q = 15 - 8 = \boxed{7\;\text{petals}}
+\]
+Mars's geocentric path traces a 7-petaled rose—more petals than
+Venus, but less symmetric because the approximation $15/8$ is
+less precise than Venus's $13/8$.
+
+Using the simpler $2/1$ approximation: $2 - 1 = 1$ ``petal''—this
+corresponds to Mars's well-known retrograde loops, where it makes
+roughly one loop per synodic period.
+
+(Both answers are acceptable; the question is which rational
+approximation you choose. The retrograde loops are the dominant
+visual feature.)
+\end{solution}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════
+%                CHALLENGE PROBLEM 8
+% ══════════════════════════════════════════════════════════════
+\begin{challenge}
+\textbf{Problem 8 — The Golden Ratio and Irrational Winding Numbers}
+
+The golden ratio $\varphi = (1+\sqrt{5})/2$ is the ``most irrational''
+number, in the sense that its continued fraction expansion
+$[1; 1, 1, 1, \ldots]$ converges the most slowly.
+\begin{enumerate}[label=(\alph*)]
+  \item Write the continued fraction expansion of $\varphi$. Show
+    that $\varphi = 1 + 1/\varphi$ and use this to verify that
+    $\varphi^2 = \varphi + 1$.
+  \item The convergents of $\varphi$'s continued fraction are
+    $1/1, 2/1, 3/2, 5/3, 8/5, 13/8, 21/13, \ldots$ — ratios of
+    consecutive Fibonacci numbers. Verify that $13/8 = 1.625$ is
+    the best rational approximation to $\varphi$ with denominator
+    $\leq 8$.
+  \item \textit{Thought question:} If Venus and Earth's period ratio
+    were \textit{exactly} $\varphi$ instead of approximately $13/8$,
+    would the geocentric pattern ever close? What would the pattern
+    look like? What is the minimum number of petals a closed
+    approximation would need?
+\end{enumerate}
+\end{challenge}
+
+\begin{challengesolution}
+\textbf{(a)} The continued fraction:
+\[
+  \varphi = 1 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \cdots}}}
+  = [1; 1, 1, 1, \ldots]
+\]
+If $\varphi = 1 + 1/\varphi$, then multiplying both sides by $\varphi$:
+\[
+  \varphi^2 = \varphi + 1
+\]
+This is the characteristic equation $x^2 - x - 1 = 0$, whose positive
+root is $\varphi = (1+\sqrt{5})/2$. \checkmark
+
+\textbf{(b)} The convergents and their errors:
+\begin{center}
+\begin{tabular}{ccc}
+  \toprule
+  Convergent & Value & Error from $\varphi$ \\
+  \midrule
+  $1/1$ & 1.000 & $-0.618$ \\
+  $2/1$ & 2.000 & $+0.382$ \\
+  $3/2$ & 1.500 & $-0.118$ \\
+  $5/3$ & 1.667 & $+0.0486$ \\
+  $8/5$ & 1.600 & $-0.0180$ \\
+  $13/8$ & 1.625 & $+0.00697$ \\
+  $21/13$ & 1.615 & $-0.00265$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+By the theory of continued fractions, each convergent $p_n/q_n$
+is the \textit{best} rational approximation to $\varphi$ among
+all fractions with denominator $\leq q_n$. Since $13/8$ is a
+convergent and the next convergent is $21/13$ (denominator 13),
+no fraction with denominator $\leq 12$ is closer. Thus $13/8$ is
+the best approximation with denominator $\leq 8$. \checkmark
+
+\textbf{(c)} If $T_E / T_V = \varphi$ exactly, the ratio would be
+\textit{irrational}, meaning $p T_V \neq q T_E$ for \textit{any}
+integers $p, q$. The geocentric pattern would \textbf{never close}—
+it would be a \textit{quasiperiodic} curve that fills a ring-shaped
+region densely, never exactly repeating.
+
+The pattern would have \textit{no finite number of petals}. However,
+the best approximation with denominator $q$ gives $p - q$ petals:
+\begin{itemize}[nosep]
+  \item $3/2 \to 1$ petal (poor)
+  \item $5/3 \to 2$ petals (crude)
+  \item $8/5 \to 3$ petals
+  \item $\mathbf{13/8 \to 5}$ \textbf{petals (what we actually see)}
+  \item $21/13 \to 8$ petals
+  \item $34/21 \to 13$ petals
+\end{itemize}
+
+The minimum number of petals for a recognizable closed approximation
+is $\boxed{5}$ (the $13/8$ convergent), because the error
+$|13/8 - \varphi| = 0.007$ is small enough that the pattern
+nearly closes after 8 years. The 3-petal ($8/5$) pattern
+would close after 5 years but the error $|8/5 - \varphi| = 0.018$
+is 2.5× larger, making it visibly non-closing.
+
+This is the deep reason Venus's pattern is so beautiful: $\varphi$
+is the most irrational number, so its rational approximants converge
+slowly, and 8 years happens to be the ``sweet spot'' where the
+approximation is good enough to nearly close while having few
+enough petals (5) to be visually clean.
+\end{challengesolution}
+
+\vspace{1cm}
+\begin{center}
+\rule{0.5\textwidth}{0.4pt}\\[6pt]
+{\large\itshape End of Problems}
+\end{center}
+
+\end{document}
